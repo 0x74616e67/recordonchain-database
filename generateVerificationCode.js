@@ -1,10 +1,7 @@
 const sqlite3 = require("sqlite3").verbose();
 const crypto = require("crypto");
 const { Command } = require("commander");
-
-const CHAINS = ["conflux", "ethereum"];
-// const PR = { conflux: "co", ethereum: "et" };
-const LIMIT_NUMBER = 2000;
+const { CHAINS, LIMIT_NUMBER } = require("./config");
 
 const program = new Command();
 program
@@ -34,7 +31,8 @@ db.run(`
     CREATE TABLE IF NOT EXISTS ${table} (
       code TEXT PRIMARY KEY,
       selled INT NOT NULL DEFAULT 0,
-      verified INT NOT NULL DEFAULT 0
+      verified INT NOT NULL DEFAULT 0,
+      locked INT NOT NULL DEFAULT 0
     )
   `);
 
